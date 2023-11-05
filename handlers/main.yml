@@ -1,0 +1,10 @@
+- name: service httpd
+  service:
+     name: "httpd"
+     state: restarted
+     enabled: true
+
+- name: software install debug
+  debug:
+     msg: "new software install"
+

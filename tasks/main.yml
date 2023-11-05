@@ -1,0 +1,29 @@
+- name: install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - "httpd"
+    - "php"
+    - "git"
+  notify: software install debug
+  when: ansible_distribution in myos
+
+- name: setup conf file
+  template:
+    src: "my.conf.j2"
+    dest: "/etc/httpd/conf.d/my.conf"
+  notify: "service httpd"
+
+- name: deploy web page from local
+  copy:
+    src: "web.html"
+    dest: "/var/www/html/web.html"
+
+- name: git pull code web page
+  git:
+    repo: 'https://github.com/omkarr15/newproject1.git'
+    dest: "/var/www/html/mygit"
+
+  ignore_errors: true
+

@@ -1,0 +1,6 @@
+myport: 81
+myos:
+  - "RedHat"
+  - "Fedora"
+  - "CentOs"
+
